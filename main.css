@@ -1,0 +1,75 @@
+@keyframes expand {
+    from {
+      transform: scale(0);
+      opacity: 0;
+      background: #5470B0;
+    }
+  }
+  
+
+.cube {
+    width: 75px;
+    height: 75px;
+    border: 2px solid black;
+    font-size: 75px;
+    text-align: center;
+    line-height: 75px;
+    justify-content: center;
+    margin: 0 auto;
+    display: inline-block;
+    border-radius: 12px;
+    margin: 2px;
+    animation: expand .5s ease-in-out;
+}
+
+/* body {
+    width: 80%;
+    display: flexbox;
+    margin: auto;
+    border: 1px dashed black;
+    justify-content: center;
+    text-align: center;
+} */
+
+#wrap {
+    display: flexbox;
+    justify-content: center;
+}
+
+#mainGame {
+    width: 55%;
+    display: flexbox;
+    margin: auto;
+    /* border: 1px dashed black; */
+    justify-content: center;
+    text-align: center;
+    float:left;
+    height: 80%;
+    padding-top: 10px;
+}
+
+#hangman {
+    width: 38%;
+    display: flexbox;
+    margin: auto;
+    /* border: 1px dashed black; */
+    justify-content: center;
+    text-align: center;
+    float: right;
+    height: 80%;
+    
+}
+
+#mainContainer {
+    display: flexbox;
+    text-align: center;
+    width: 90%;
+    margin: auto;
+    height: 40em;
+    border: 1px solid red;
+}
+
+
+
+
+
