@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Hangman</title>
     <link rel="stylesheet" href="main.css">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 </head>
 <body>
     
@@ -13,26 +14,23 @@
             <h1>Welcome to Hangman!</h1>
 <div id="mainGame">
     <div id="main">
+        <div id="select">
+                <h3>Please select your category:</h3>
+                <button id="sport" class="selectBtn">Sports</button>
+                <button id="vegie" class="selectBtn">Vegetables</button>
+                <button id="anim" class="selectBtn">Animals</button>
+                <button id="food" class="selectBtn">Foods</button>
+        </div>
     </div>
-
-    <div>
-        <br>
-        <br>
-        <br>
-        <button id="btn">Click Me</button>
-    </div>
-    <!-- form which takes letter -->
-    
+    <div id="logic" class="logic2">
         <input type="text" id="senddata" maxlength="1">
-        <!-- submit button -->
         <button id="sendbtn">Guess Letter!</button>
-    
-    <!-- Correct or wrong -->
-    <p>You've guessed <span id="gues"></span></p>
-    <!-- counter for tries left -->
-    <p>You have <span id="tries">0</span> tries remaining.</p>
-    <!-- guessed letters -->
-    <p id=>So far you've guessed the following letters: <span id="letters"></span></p>
+        <p><span id="gues"></span></p>
+        <p>You have <span id="tries">0</span> tries remaining.</p>
+        <p id=>So far you've guessed the following letters: <span id="letters"></span></p>
+        <button id="reload"> RELOAD </button>
+    </div>
+       
 </div>
 <div id="hangman">
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae quo perspiciatis eos id quod, aliquam vel aperiam, esse totam pariatur at neque quidem. Obcaecati, dolorum reiciendis dolores dolor consequatur totam.</p>

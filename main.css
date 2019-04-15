@@ -1,3 +1,7 @@
+body {
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
 @keyframes expand {
     from {
       transform: scale(0);
@@ -20,20 +24,6 @@
     border-radius: 12px;
     margin: 2px;
     animation: expand .5s ease-in-out;
-}
-
-/* body {
-    width: 80%;
-    display: flexbox;
-    margin: auto;
-    border: 1px dashed black;
-    justify-content: center;
-    text-align: center;
-} */
-
-#wrap {
-    display: flexbox;
-    justify-content: center;
 }
 
 #mainGame {
@@ -65,9 +55,40 @@
     text-align: center;
     width: 90%;
     margin: auto;
-    height: 40em;
+    height: 45em;
     border: 1px solid red;
 }
+
+/* #main {
+    height: 60%;
+    text-align: center;
+} */
+
+.logic2 {
+    display:none;
+}
+
+.selectBtn {
+    display: flex;
+    margin: auto;
+    margin-top: 15px;
+    width: 8em; 
+    justify-content: center;
+    font-family: 'Nanum Gothic', sans-serif;
+    height: 2em;
+    align-self: center;
+}
+
+.hidden {
+    display: none;
+}
+
+#logic {
+    padding-top: 5em;
+}
+    
+
+
 
 
 
