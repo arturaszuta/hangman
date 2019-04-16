@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Hangman</title>
-    <link rel="shortcut icon" type="image/x-icon" href="man.png">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/man.png">
     <link rel="stylesheet" href="main.css">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 </head>
@@ -26,6 +26,10 @@
     <div id="logic" class="logic2">
         <input type="text" id="senddata" maxlength="1">
         <button id="sendbtn">Guess Letter!</button>
+        <br>
+        <br>
+        <input type="text" id="wholeAnswer">
+        <button id="sendAnswer">You think you got it? Enter & Click!</button>
         <p><span id="gues"></span></p>
         <p>You have <span id="tries">0</span> tries remaining.</p>
         <p id=>So far you've guessed the following letters: <span id="letters"></span></p>
@@ -34,7 +38,10 @@
        
 </div>
 <div id="hangman">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae quo perspiciatis eos id quod, aliquam vel aperiam, esse totam pariatur at neque quidem. Obcaecati, dolorum reiciendis dolores dolor consequatur totam.</p>
+    <canvas id="canvas1" width="350px" height="500px">
+
+    </canvas>
+    
 
 </div>
 </div>

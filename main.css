@@ -50,7 +50,7 @@ body {
     width: 90%;
     margin: auto;
     height: 45em;
-    border: 1px solid red;
+   
 }
 
 /* #main {
@@ -71,8 +71,16 @@ body {
     font-family: 'Nanum Gothic', sans-serif;
     height: 2em;
     align-self: center;
+    border: 3px solid #639fff;
+    border-radius: 15px;
+    background: white;
+    font-size: 1.5em;
 }
 
+.selectBtn:hover {
+    color: white;
+    background: #639fff;
+}
 .hidden {
     display: none;
 }
@@ -87,6 +95,13 @@ body {
 
 .flip {
     animation: flip 0.5s;
+}
+
+#hangman {
+  border: 1px solid black;
+  height: 500px;
+  padding: 10px;
+  width: 350px;
 }
 
 

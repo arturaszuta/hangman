@@ -12,9 +12,6 @@ function typeWriter() {
 
 typeWriter();
 
-
-
-
 //declaring all variables
 var wordpool = [];
 var word;
@@ -28,17 +25,23 @@ var totaltries = 6;
 var guessedletters = [];
 var wincounter = 0;
 
+var audioCircle = new Audio("assets/circle.mp3");
+var audioLine = new Audio("assets/line.mp3");
+var audioClick = new Audio("assets/click.mp3");
 
+
+//event listeners and functions
 
 document.getElementById("sport").addEventListener("click", function() { wordpool = sports; hideDIV();  setGame(); addElement(); });
 document.getElementById("vegie").addEventListener("click", function() { wordpool = vegetables; hideDIV();  setGame(); addElement();  });
 document.getElementById("anim").addEventListener("click", function() { wordpool = animals; hideDIV();  setGame(); addElement();  });
 document.getElementById("food").addEventListener("click", function() { wordpool = foods; hideDIV();  setGame(); addElement();  });
 document.getElementById("tries").innerHTML = totaltries;
-// document.getElementById("btn").addEventListener("click", addElement);
+
 document.getElementById("sendbtn").addEventListener("click", addLetters);
 document.addEventListener("keydown", keylistener);
 document.getElementById("reload").addEventListener("click", reload);
+document.getElementById("sendAnswer").addEventListener("click", wholeAnswer);
 
 function reload() {
     location.reload();
@@ -48,6 +51,7 @@ function setGame() {
     word = wordpool[wordNumber];
     win = word.length;
 }
+
 function hideDIV() {
     document.getElementById("select").classList.add("hidden");
     document.getElementById("logic").classList.remove("logic2");
@@ -69,6 +73,15 @@ var d2 = null;
 do { d2 = new Date(); }
 while(d2-d < ms);
 }
+
+function removeClass() {
+    var z = document.getElementsByClassName("cube");
+        var y;
+        for (y = 0; y <z.length; y++) {
+            z[y].classList.remove("wrong");
+        }
+};
+
 
 var i = 0;
 // div creation & styling
@@ -92,6 +105,7 @@ function addElement () {
   var currentDiv = document.getElementById("main").parentNode; 
   var currentDiv2 = document.getElementById("main");
   currentDiv.insertBefore(newDiv, currentDiv2);
+  audioClick.play();
   i++;
   if( i < word.length) {
       setTimeout(addElement, 175);
@@ -118,6 +132,7 @@ function addLetters () {
     } else {
         document.getElementById("gues").innerHTML = "You've guessed wrong!";
         document.getElementById("tries").innerHTML = totaltries -= 1;
+        animHang();
         var z = document.getElementsByClassName("cube");
         var y;
         for (y = 0; y <z.length; y++) {
@@ -152,6 +167,8 @@ function addLetters () {
     }
     
 } else {
+    totaltries = 0;
+    animHang();
     alert("You've lost!");
     document.getElementById("tries").innerHTML = 0;
     document.getElementById("gues").innerHTML = "The answer was: " + word;
@@ -159,13 +176,117 @@ function addLetters () {
 } else alert("enter a letter")
 }
 
-document.getElementById("senddata").addEventListener("click", function() {
-    var z = document.getElementsByClassName("cube");
-        var y;
-        for (y = 0; y <z.length; y++) {
-            z[y].classList.remove("wrong");
-        }
-});
+function wholeAnswer() {
+    var fullAnswer = document.getElementById("wholeAnswer");
+    if( fullAnswer.value == word) {
+        alert("You've won!");
+        stopgame();
+    } else {
+        totaltries -= 1;
+        guessedletters += fullAnswer.value + ", ";
+        document.getElementById("tries").innerHTML = totaltries;
+        fullAnswer.value = "";
+        document.getElementById("letters").innerHTML = guessedletters;
+        animHang();
+    }
+}
+document.getElementById("senddata").addEventListener("click", removeClass );
+document.getElementById("sendAnswer").addEventListener("click", removeClass);
+
+
+
+
+// hangman animation 
+
+
+var canvas = document.getElementById("canvas1");
+// if (canvas.getContext("2d")) {
+context = canvas.getContext("2d");
+context.strokeStyle = "black";
+
+context.beginPath();
+context.moveTo(25, 500);
+context.lineTo(325, 500);
+context.stroke();
+
+//the frame - pole
+context.beginPath();
+context.moveTo(275, 500);
+context.lineTo(275, 50);
+context.stroke();
+
+//the frame - top
+context.beginPath();
+context.moveTo(275, 50);
+context.lineTo(125, 50);
+context.stroke();
+
+//the noose
+context.beginPath();
+context.moveTo(125, 50);
+context.lineTo(125, 125);
+context.stroke();
+
+
+function animHang() {
+    
+    switch(totaltries) {
+
+        case 5 :
+        audioCircle.play();
+        context.beginPath();
+        context.arc(125, 150, 25, 0, Math.PI * 2, true); // draw circle for head
+        // (x,y) center, radius, start angle, end angle, anticlockwise
+        context.stroke();
+        break;
+
+        case 4 :
+        // body
+        audioLine.play();
+        context.beginPath();
+        context.moveTo(125, 175);
+        context.lineTo(125, 300);
+        context.stroke();
+        break;
+
+        case 3 :
+        audioLine.play();
+        context.beginPath();
+        //left arm
+        context.moveTo(125, 200);
+        context.lineTo(75, 250);
+        context.stroke();
+        break;
+
+        case 2 :
+        audioLine.play();
+        context.beginPath();
+        //right arm
+        context.moveTo(125, 200);
+        context.lineTo(175, 250);
+        context.stroke();
+        break;
+
+        case 1 :
+        audioLine.play();
+        context.beginPath();
+        context.moveTo(125, 300);
+        context.lineTo(75, 375);
+        context.stroke();
+        break;
+
+        case 0 :
+        audioLine.play();
+        context.beginPath();
+        context.moveTo(125, 300);
+        context.lineTo(175, 375);
+        context.stroke();
+        break;
+    }
+
+}
+
+//sounds
 
 
 
