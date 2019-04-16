@@ -1,5 +1,6 @@
-v1
+A basic hangman game.
 
+v1
 Basic logic of the game with a couple of animations.
 Lot's of "bugs".
 
@@ -18,3 +19,8 @@ Animated correct guesses.
 Animated wrong guesses.
 Animated initial h1.
 Showing the answer then game is lost.
+
+v4
+Created canvas with a frame and a the hangman.
+Added logic for each piece of the man to be animated as "wrong" guess happens.
+added basic full answer guessing.
