@@ -1,3 +1,20 @@
+var u = 0;
+var txt = 'Welcome to Hangman!'; 
+var speed = 75; 
+
+function typeWriter() {
+  if (u < txt.length) {
+    document.querySelector("h1").innerHTML += txt.charAt(u);
+    u++;
+    setTimeout(typeWriter, speed);
+  }
+}
+
+typeWriter();
+
+
+
+
 //declaring all variables
 var wordpool = [];
 var word;
@@ -45,15 +62,22 @@ function keylistener() {
     if(keyName === 13) { addLetters()}
 }
 
+function wait(ms)
+{
+var d = new Date();
+var d2 = null;
+do { d2 = new Date(); }
+while(d2-d < ms);
+}
 
+var i = 0;
 // div creation & styling
 function addElement () {
-    
-    for(var i = 0; i<word.length; i++) {
   // create a new div element 
   var newDiv = document.createElement("div"); 
   //add class to the element to differentiate it
   newDiv.classList.add("cube");
+  newDiv.classList.add("addCube");
   newDiv.id = "block" + i;
   // setup ?
   if(word[i] == false) {
@@ -68,13 +92,20 @@ function addElement () {
   var currentDiv = document.getElementById("main").parentNode; 
   var currentDiv2 = document.getElementById("main");
   currentDiv.insertBefore(newDiv, currentDiv2);
-}
+  i++;
+  if( i < word.length) {
+      setTimeout(addElement, 175);
+  }
 }
 
 
 // main logic of the game
 
+
+
 function addLetters () {
+
+    
     // make sure the input is not empty & there are still tries left
     if(document.getElementById("senddata").value !== "") {
     if(totaltries > 1) {
@@ -87,7 +118,15 @@ function addLetters () {
     } else {
         document.getElementById("gues").innerHTML = "You've guessed wrong!";
         document.getElementById("tries").innerHTML = totaltries -= 1;
+        var z = document.getElementsByClassName("cube");
+        var y;
+        for (y = 0; y <z.length; y++) {
+            z[y].classList.add("wrong");
+            z[y].classList.remove("addCube");
+        }
     }
+
+  
     
 
     // checks the word if there are matching letters
@@ -95,6 +134,7 @@ function addLetters () {
         if(word[i] === x && guessedletters.includes(x) == false) {
                 // select the appropriate div & change value of said div
                 document.getElementById("block" + i).innerHTML = x; 
+                document.getElementById("block" + i).classList.add("flip"); 
                 // check if it is a win
                 wincounter += 1;
                 if(win == wincounter) { 
@@ -113,6 +153,20 @@ function addLetters () {
     
 } else {
     alert("You've lost!");
+    document.getElementById("tries").innerHTML = 0;
+    document.getElementById("gues").innerHTML = "The answer was: " + word;
 }
 } else alert("enter a letter")
 }
+
+document.getElementById("senddata").addEventListener("click", function() {
+    var z = document.getElementsByClassName("cube");
+        var y;
+        for (y = 0; y <z.length; y++) {
+            z[y].classList.remove("wrong");
+        }
+});
+
+
+
+
